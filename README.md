@@ -6,6 +6,8 @@
 
 > 差不多每个部分都有示例，包括对特性的一些概况
 
+提醒一下，原生mingw是不支持thread,future库的，需要在github上找官方提供的一份替代头文件，详见chapter_1的文档
+
 ### [chapter_1](./chapter_1/CPP_learning_notes.md)
 
 主要内容如下：
