@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/output.dir/extern.cpp.o CMakeFiles/output.dir/my_class.cpp.o  -o output 

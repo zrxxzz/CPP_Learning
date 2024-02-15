@@ -1,7 +1,7 @@
 #include "my_class.hpp"
 
 void my_class::test_method(){
-    std::cout<<this->secret;
+    std::cout<<"here is private value: "<<this->secret<<std::endl;
 }
 
 my_class::my_class(int _size){
