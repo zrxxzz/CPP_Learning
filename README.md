@@ -16,4 +16,13 @@
 - 内联函数
 - 友元函数
 
+### [chapter_2](./chapter_2/CPP_learning_notes.md)
+
+主要内容如下：
+- 内存分区
+- 继承
+- 多态
+- 重构
+- CMakeLists.txt/Makefile
+
 ...
