@@ -13,4 +13,5 @@ elif [ "$1" == "build" ]; then
 	./output
 elif [ "$1" == "clean" ]; then
 	rm -rf build
+else echo"wrong paragram"
 fi

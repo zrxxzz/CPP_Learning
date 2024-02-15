@@ -1,3 +1,0 @@
-/workspaces/CPP_Learning/chapter_2/build/CMakeFiles/rebuild_cache.dir
-/workspaces/CPP_Learning/chapter_2/build/CMakeFiles/edit_cache.dir
-/workspaces/CPP_Learning/chapter_2/build/CMakeFiles/output.dir
