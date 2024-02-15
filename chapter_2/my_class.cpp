@@ -1,12 +1,12 @@
 #include "my_class.hpp"
 
 void my_class::test_method(){
-
+    std::cout<<this->secret;
 }
 
 my_class::my_class(int _size){
     this->max_size=_size;
-    std::cout<<this->secret;
+    this->secret='A';
 }
 
 my_class::~my_class(){
