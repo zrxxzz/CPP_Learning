@@ -13,12 +13,13 @@ public:
     char test_method();
     my_class();
     my_class(int _size);
-    ~my_class();
+    ~my_class()=default;
 };
 
 class sub_class : public my_class{
 public:
     sub_class(int _size);
+    ~sub_class()=default;
     int get_size();
     int sub_method();
     void sub_method(bool flag);

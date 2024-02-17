@@ -15,6 +15,8 @@ int main(){
     test_one->sub_method(true);
     //(sub_class*)(new my_class(10));
     cout<<"sub_class's value is "<<test_one->get_size()<<endl;
+    delete base_one;
+    delete test_one;
     return 0;
 }
 
