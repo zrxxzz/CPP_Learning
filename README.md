@@ -21,8 +21,28 @@
 主要内容如下：
 - 内存分区
 - 继承
-- 多态
-- 重构
+- 重载
 - CMakeLists.txt/Makefile
+
+How to run:
+
+./run.sh 
+
+or 
+
+./run.sh (build/clean)
+
+### [chapter_3](./chapter_3/CPP_learning_notes.md)
+
+主要内容如下：
+- 多态
+- 接口（抽象类）
+- 友元
+- static 关键字
+- 菱形继承问题
+
+> 面向对象编程主体部分如上，下面章节为其他进阶部分
+---
+ 
 
 ...
