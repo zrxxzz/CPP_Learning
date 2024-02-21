@@ -7,4 +7,4 @@ configure_file(test.txt ${CMAKE_BINARY_DIR}/test.txt COPYONLY)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
-add_executable(output main.cpp second_class.cpp)
+add_executable(output main.cpp second_class.cpp )
