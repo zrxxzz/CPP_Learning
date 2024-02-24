@@ -3,6 +3,8 @@
 #include <string>
 #include <exception>
 #include <typeinfo>
+#include <pthread.h>
+#include "multi_thread.hpp"
 #include "second_class.hpp"
 #include "template_class.hpp"
 using namespace std;
@@ -80,17 +82,30 @@ int main(){
     // cout<<"min_int: "<<MIN(a,b)<<endl;
     // string s1="nice",s2="day";
     // cout<<"min_string: "<<MIN(s1,s2)<<endl;
-    try{
-        template_test<int> int_stack;
-        int_stack.push(1);
-        cout<<"now the top value from the int_stack: "<<int_stack.top()<<endl;
-        int_stack.pop();
-        cout<<"is the int_stack empty? "<<endl;
-        cout<<int_stack.empty()<<endl;
-    }catch(const exception& e){
-        cerr<<"HERE IS AN ERROR:"<<e.what()<<endl;
-    }
+    // try{
+    //     template_test<int> int_stack;
+    //     int_stack.push(1);
+    //     cout<<"now the top value from the int_stack: "<<int_stack.top()<<endl;
+    //     int_stack.pop();
+    //     cout<<"is the int_stack empty? "<<endl;
+    //     cout<<int_stack.empty()<<endl;
+    // }catch(const exception& e){
+    //     cerr<<"HERE IS AN ERROR:"<<e.what()<<endl;
+    // }
     
+    /*多线程测试*/
+    // pthread
+    pthread_t test_pthread;
+    int i=1;
+    pthread_create(&test_pthread,NULL,pthread_test,(void*)(&i));
+    //pthread_exit(NULL); 如果使用了，那么后续的线程都无法启动, 适合在该子线程最后结束的时候用(即子线程的函数中调用)
+    pthread_join(test_pthread,NULL);//主线程被阻塞，直到该线程被完成；后面的void*指针可以用来接收返回值
+    // thread
+    thread std_thread(std_thread_test,1);
+    //std_thread.join();//主线程被阻塞，直到该线程任务完成
+    std_thread.detach();// 子线程被分离
+    this_thread::sleep_for(chrono::seconds(3));
+    cout<<"main thread comes to the end"<<endl;
 
     return 0;
 }

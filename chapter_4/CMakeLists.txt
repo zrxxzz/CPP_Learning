@@ -7,4 +7,9 @@ configure_file(test.txt ${CMAKE_BINARY_DIR}/test.txt COPYONLY)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
+# 添加编译和链接选项 -pthread
+add_compile_options(-pthread)
+
+link_libraries(-pthread)
+
 add_executable(output main.cpp second_class.cpp )
