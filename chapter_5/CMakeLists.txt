@@ -11,4 +11,4 @@ add_compile_options(-pthread)
 
 link_libraries(-pthread)
 
-add_executable(output main.cpp )
+add_executable(output main.cpp threadPool.cpp)

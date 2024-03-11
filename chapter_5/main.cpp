@@ -1,16 +1,15 @@
 #include <iostream>
-#include <vector>
 #include <string>
-#include <mutex>
-#include <thread>
 #include "simple_shared_ptr.hpp"
+#include "threadPool.hpp"
 std::mutex mtx;
 int counter =0;
 void try_increase_counter_with_lock_guard() {
-    // std::lock_guard<std::mutex> guard(mtx); // 如果不加的话，会出现线程抢占公共资源情况
-    std::unique_lock<std::mutex> ulock(mtx); // unique_lock 和 lock_guard 二选一
-    ulock.unlock();
+    std::lock_guard<std::mutex> guard(mtx); // 如果不加的话，会出现线程抢占公共资源情况
+    // std::unique_lock<std::mutex> ulock(mtx); // unique_lock 和 lock_guard 二选一
+    
     ++counter; 
+    // ulock.unlock();
     std::cout << std::this_thread::get_id() << " increased counter to " << counter << std::endl;
 }
 int main(){
@@ -38,19 +37,26 @@ int main(){
     //     th.join();
     // }
     /*测试手写的shared_ptr*/
-    {
-        simpleSharedPtr<int> test(new int(10));
-        std::cout<<"now the count is: "<<test.use_count()<<std::endl;
-        std::cout<<"the test ptr is: "<<test.get()<<std::endl;
-        simpleSharedPtr<int> other1=test;
-        std::cout<<"now the count is: "<<test.use_count()<<std::endl;
-        // delete &other1; //会出现double free 问题
-        other1.reset();
-        simpleSharedPtr<int> other2(test);
-        std::cout<<"now the count is: "<<test.use_count()<<std::endl;
-        std::cout<<"now the value is: "<<*test<<std::endl;
-        
+    // {
+    //     simpleSharedPtr<int> test(new int(10));
+    //     std::cout<<"now the count is: "<<test.use_count()<<std::endl;
+    //     std::cout<<"the test ptr is: "<<test.get()<<std::endl;
+    //     simpleSharedPtr<int> other1=test;
+    //     std::cout<<"now the count is: "<<test.use_count()<<std::endl;
+    //     // delete &other1; //会出现double free 问题
+    //     other1.reset();
+    //     simpleSharedPtr<int> other2(test);
+    //     std::cout<<"now the count is: "<<test.use_count()<<std::endl;
+    //     std::cout<<"now the value is: "<<*test<<std::endl;
+    // }
+    /*测试手写的threadPool*/
+    threadPool pool(4);
+    for(int i=0;i<100;i++){
+        auto result = pool.enqueue(try_increase_counter_with_lock_guard);
     }
-    
+    for(int i=0;i<100;i++){
+        auto result = pool.enqueue(try_increase_counter_with_lock_guard);
+    }
+
     return 0;
 }
